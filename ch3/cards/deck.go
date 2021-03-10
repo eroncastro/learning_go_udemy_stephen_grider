@@ -18,7 +18,8 @@ func NewDeck() Deck {
 
 	for _, suit := range suits {
 		for _, value := range values {
-			cards = append(cards, value+" of "+suit)
+			card := fmt.Sprintf("%s of %s", value, suit)
+			cards = append(cards, card)
 		}
 	}
 
