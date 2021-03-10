@@ -28,7 +28,8 @@ func main() {
 	fmt.Println(len(mySlice))
 	fmt.Println(mySlice[len(mySlice):])
 
-	draw, newDeck := cards.Deal(myDeck, 6)
-	fmt.Println(len(draw))
-	fmt.Println(len(newDeck))
+	hand, remainingDeck := cards.Deal(myDeck, 10)
+	fmt.Println(len(myDeck))
+	fmt.Println(len(remainingDeck))
+	fmt.Println(len(hand))
 }

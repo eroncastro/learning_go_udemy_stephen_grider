@@ -26,7 +26,11 @@ func NewDeck() Deck {
 }
 
 func Deal(d Deck, handSize int) (Deck, Deck) {
-	return d[:handSize], d[handSize:]
+	if handSize > len(d) {
+		handSize = len(d)
+	}
+
+	return d[handSize:], d[:handSize]
 }
 
 func (d Deck) Print() {
