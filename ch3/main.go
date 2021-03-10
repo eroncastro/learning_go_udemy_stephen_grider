@@ -6,11 +6,6 @@ import (
 )
 
 func main() {
-	cardsList := cards.Deck{"Ace of Diamonds", newCard()}
-
-	cardsList = append(cardsList, "Six of Spades")
-	cardsList.Print()
-
 	var myList [10]string
 
 	myList[0] = "Lala"
@@ -28,8 +23,12 @@ func main() {
 
 	myDeck := cards.NewDeck()
 	myDeck.Print()
-}
 
-func newCard() string {
-	return "Five of Diamonds"
+	mySlice := []string{"a", "b", "c", "d", "e"}
+	fmt.Println(len(mySlice))
+	fmt.Println(mySlice[len(mySlice):])
+
+	draw, newDeck := cards.Deal(myDeck, 6)
+	fmt.Println(len(draw))
+	fmt.Println(len(newDeck))
 }
