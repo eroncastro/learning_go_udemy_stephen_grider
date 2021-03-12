@@ -6,30 +6,19 @@ import (
 )
 
 func main() {
-	var myList [10]string
+	myDeck := cards.NewDeck()
 
-	myList[0] = "Lala"
-
-	for _, text := range myList {
-		fmt.Println(text)
+	err := myDeck.SaveToFile("popo.txt")
+	if err != nil {
+		panic(err)
 	}
 
-	myList2 := []string{"lala"}
+	fmt.Println("Reading data")
 
-	myList3 := append(myList2, "popo")
+	myNewDeck, err := cards.NewDeckFromFile("popo.txt")
+	if err != nil {
+		panic(err)
+	}
 
-	fmt.Println(myList2)
-	fmt.Println(myList3)
-
-	myDeck := cards.NewDeck()
-	myDeck.Print()
-
-	mySlice := []string{"a", "b", "c", "d", "e"}
-	fmt.Println(len(mySlice))
-	fmt.Println(mySlice[len(mySlice):])
-
-	hand, remainingDeck := cards.Deal(myDeck, 10)
-	fmt.Println(len(myDeck))
-	fmt.Println(len(remainingDeck))
-	fmt.Println(len(hand))
+	fmt.Println(myNewDeck.ToString())
 }

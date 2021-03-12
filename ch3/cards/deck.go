@@ -1,6 +1,10 @@
 package cards
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+	"strings"
+)
 
 // Deck extends type string
 type Deck []string
@@ -26,12 +30,35 @@ func NewDeck() Deck {
 	return cards
 }
 
+func NewDeckFromFile(filename string) (Deck, error) {
+	data, err := os.ReadFile(filename)
+	if err != nil {
+		return nil, err
+	}
+
+	deck := Deck{}
+
+	for _, card := range strings.Split(string(data), ",") {
+		deck = append(deck, card)
+	}
+
+	return deck, nil
+}
+
 func Deal(d Deck, handSize int) (Deck, Deck) {
 	if handSize > len(d) {
 		handSize = len(d)
 	}
 
 	return d[handSize:], d[:handSize]
+}
+
+func (d Deck) ToString() string {
+	return strings.Join(d, ",")
+}
+
+func (d Deck) SaveToFile(filename string) error {
+	return os.WriteFile(filename, []byte(d.ToString()), 0666)
 }
 
 func (d Deck) Print() {
