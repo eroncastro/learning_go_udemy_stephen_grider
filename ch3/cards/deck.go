@@ -36,13 +36,7 @@ func NewDeckFromFile(filename string) (Deck, error) {
 		return nil, err
 	}
 
-	deck := Deck{}
-
-	for _, card := range strings.Split(string(data), ",") {
-		deck = append(deck, card)
-	}
-
-	return deck, nil
+	return Deck(strings.Split(string(data), ",")), nil
 }
 
 func Deal(d Deck, handSize int) (Deck, Deck) {

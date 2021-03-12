@@ -16,7 +16,7 @@ func main() {
 
 	fmt.Println("Reading data")
 
-	myNewDeck, err := cards.NewDeckFromFile("popo2.txt")
+	myNewDeck, err := cards.NewDeckFromFile("popo.txt")
 	if err != nil {
 		log.Fatal(err)
 	}
