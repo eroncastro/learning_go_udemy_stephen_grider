@@ -3,6 +3,7 @@ package main
 import (
 	"cards/cards"
 	"fmt"
+	"log"
 )
 
 func main() {
@@ -15,9 +16,9 @@ func main() {
 
 	fmt.Println("Reading data")
 
-	myNewDeck, err := cards.NewDeckFromFile("popo.txt")
+	myNewDeck, err := cards.NewDeckFromFile("popo2.txt")
 	if err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
 
 	fmt.Println(myNewDeck.ToString())
