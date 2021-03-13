@@ -17,6 +17,7 @@ var values [13]string = [13]string{
 	"Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King",
 }
 
+// NewDeck creates a whole deck with 52 cards
 func NewDeck() Deck {
 	cards := Deck{}
 
@@ -30,6 +31,8 @@ func NewDeck() Deck {
 	return cards
 }
 
+// NewDeckFromFile reads a file named "filename" and
+// returns a Deck and an error
 func NewDeckFromFile(filename string) (Deck, error) {
 	data, err := os.ReadFile(filename)
 	if err != nil {
@@ -39,6 +42,8 @@ func NewDeckFromFile(filename string) (Deck, error) {
 	return Deck(strings.Split(string(data), ",")), nil
 }
 
+// Deal can be used to deal cards and returns
+// the dealt hand and the remaining deck
 func Deal(d Deck, handSize int) (Deck, Deck) {
 	if handSize > len(d) {
 		handSize = len(d)
@@ -47,14 +52,17 @@ func Deal(d Deck, handSize int) (Deck, Deck) {
 	return d[handSize:], d[:handSize]
 }
 
+// ToString convert your current deck to a string
 func (d Deck) ToString() string {
 	return strings.Join(d, ",")
 }
 
+// SaveToFile writes you deck into a file named filename
 func (d Deck) SaveToFile(filename string) error {
 	return os.WriteFile(filename, []byte(d.ToString()), 0666)
 }
 
+// Print prints the deck into the standard output
 func (d Deck) Print() {
 	for i, card := range d {
 		fmt.Println(i, card)
