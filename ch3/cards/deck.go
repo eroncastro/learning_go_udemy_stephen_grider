@@ -70,7 +70,7 @@ func (d Deck) Shuffle() error {
 		return errors.New("Deck is empty")
 	}
 
-	randGenerator := rand.New(rand.NewSource(time.Now().Unix()))
+	randGenerator := rand.New(rand.NewSource(time.Now().UnixNano()))
 
 	for i := range d {
 		n := randGenerator.Intn(len(d))
