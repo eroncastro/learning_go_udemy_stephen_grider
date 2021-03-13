@@ -22,4 +22,13 @@ func main() {
 	}
 
 	fmt.Println(myNewDeck.ToString())
+
+	fmt.Println("After shuffling")
+
+	err = myNewDeck.Shuffle()
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println(myNewDeck.ToString())
 }

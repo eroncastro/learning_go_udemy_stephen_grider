@@ -1,9 +1,12 @@
 package cards
 
 import (
+	"errors"
 	"fmt"
+	"math/rand"
 	"os"
 	"strings"
+	"time"
 )
 
 // Deck extends type string
@@ -60,6 +63,21 @@ func (d Deck) ToString() string {
 // SaveToFile writes you deck into a file named filename
 func (d Deck) SaveToFile(filename string) error {
 	return os.WriteFile(filename, []byte(d.ToString()), 0666)
+}
+
+func (d Deck) Shuffle() error {
+	if len(d) == 0 {
+		return errors.New("Deck is empty")
+	}
+
+	randGenerator := rand.New(rand.NewSource(time.Now().Unix()))
+
+	for i := range d {
+		n := randGenerator.Intn(len(d))
+		d[i], d[n] = d[n], d[i]
+	}
+
+	return nil
 }
 
 // Print prints the deck into the standard output
