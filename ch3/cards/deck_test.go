@@ -22,7 +22,7 @@ func TestNewDeck(t *testing.T) {
 		got := newDeck[0]
 
 		if got != expected {
-			t.Errorf("Expected first card to be %s, got %s", expected, got)
+			t.Errorf("Expected first card to be %s, got %v", expected, got)
 		}
 	})
 
@@ -31,7 +31,7 @@ func TestNewDeck(t *testing.T) {
 		got := newDeck[len(newDeck)-1]
 
 		if got != expected {
-			t.Errorf("Expected last card to be %s, got %s", expected, got)
+			t.Errorf("Expected last card to be %s, got %v", expected, got)
 		}
 	})
 }
@@ -40,7 +40,7 @@ func TestSaveToFile(t *testing.T) {
 	tempDir := os.TempDir()
 	f, err := os.CreateTemp(tempDir, "deck")
 	if err != nil {
-		t.Errorf("An error occured while creating temp file: %s", err)
+		t.Errorf("An error occured while creating temp file: %v", err)
 	}
 	deck := NewDeck()
 	err = deck.SaveToFile(f.Name())
@@ -49,7 +49,7 @@ func TestSaveToFile(t *testing.T) {
 
 	t.Run("test no error occurs after saving file", func(t *testing.T) {
 		if err != nil {
-			t.Errorf("Expected not error, got %s", err)
+			t.Errorf("Expected not error, got %v", err)
 		}
 	})
 
@@ -65,7 +65,7 @@ func TestNewDeckFromFile(t *testing.T) {
 	tempDir := os.TempDir()
 	f, err := os.CreateTemp(tempDir, "deck")
 	if err != nil {
-		t.Errorf("An error occured while creating temp file: %s", err)
+		t.Errorf("An error occured while creating temp file: %v", err)
 	}
 
 	NewDeck().SaveToFile(f.Name())
@@ -75,7 +75,7 @@ func TestNewDeckFromFile(t *testing.T) {
 
 	t.Run("test not error occurs while creating deck", func(t *testing.T) {
 		if err != nil {
-			t.Errorf("Expected no error, got %s", err)
+			t.Errorf("Expected no error, got %v", err)
 		}
 	})
 
