@@ -60,3 +60,28 @@ func TestSaveToFile(t *testing.T) {
 		}
 	})
 }
+
+func TestNewDeckFromFile(t *testing.T) {
+	tempDir := os.TempDir()
+	f, err := os.CreateTemp(tempDir, "deck")
+	if err != nil {
+		t.Errorf("An error occured while creating temp file: %s", err)
+	}
+
+	NewDeck().SaveToFile(f.Name())
+	defer os.Remove(f.Name())
+
+	deck, err := NewDeckFromFile(f.Name())
+
+	t.Run("test not error occurs while creating deck", func(t *testing.T) {
+		if err != nil {
+			t.Errorf("Expected no error, got %s", err)
+		}
+	})
+
+	t.Run("test created deck is not empty", func(t *testing.T) {
+		if len(deck) != 52 {
+			t.Errorf("Expected deck length to be 52, got %d", len(deck))
+		}
+	})
+}
