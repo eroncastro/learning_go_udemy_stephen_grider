@@ -1,6 +1,7 @@
 package cards
 
 import (
+	"os"
 	"testing"
 )
 
@@ -31,6 +32,31 @@ func TestNewDeck(t *testing.T) {
 
 		if got != expected {
 			t.Errorf("Expected last card to be %s, got %s", expected, got)
+		}
+	})
+}
+
+func TestSaveToFile(t *testing.T) {
+	tempDir := os.TempDir()
+	f, err := os.CreateTemp(tempDir, "deck")
+	if err != nil {
+		t.Errorf("An error occured while creating temp file: %s", err)
+	}
+	deck := NewDeck()
+	err = deck.SaveToFile(f.Name())
+
+	defer os.Remove(f.Name())
+
+	t.Run("test no error occurs after saving file", func(t *testing.T) {
+		if err != nil {
+			t.Errorf("Expected not error, got %s", err)
+		}
+	})
+
+	t.Run("test saved file is not empty", func(t *testing.T) {
+		stat, _ := os.Stat(f.Name())
+		if stat.Size() == 0 {
+			t.Errorf("Expected file to have size > 0, got 0")
 		}
 	})
 }
