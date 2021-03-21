@@ -50,8 +50,19 @@ func main() {
 
 	p3.Print()
 
+	// Value types
+	// int, float, string, bool, structs
+
+	// a slice is a reference type in Go
+	// it contains:
+	// 1. a pointer to the head of the underlying array
+	// 2. a capacity: the maximum elements it can currently hold
+	// 3. a lenght: the current elements it contains in its underlying array
 	mySlice := []string{"Hi", "There", "How", "Are", "You"}
 	updateSlice(mySlice)
+
+	// Reference types:
+	// Slices, Maps, channels, pointers, functions
 }
 
 func updateSlice(s []string) {
