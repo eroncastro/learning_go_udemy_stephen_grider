@@ -56,10 +56,13 @@ func main() {
 	// a slice is a reference type in Go
 	// it contains:
 	// 1. a pointer to the head of the underlying array
-	// 2. a capacity: the maximum elements it can currently hold
-	// 3. a lenght: the current elements it contains in its underlying array
+	// 2. a capacity: the number of elements in the underlying array
+	// 3. a length: the number of elements the slice contains
 	mySlice := []string{"Hi", "There", "How", "Are", "You"}
 	updateSlice(mySlice)
+
+	fmt.Println(len(mySlice))
+	fmt.Println(cap(mySlice))
 
 	// Reference types:
 	// Slices, Maps, channels, pointers, functions
