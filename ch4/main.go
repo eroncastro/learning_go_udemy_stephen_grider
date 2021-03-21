@@ -63,8 +63,16 @@ func main() {
 
 	// Reference types:
 	// Slices, Maps, channels, pointers, functions
+
+	name := "John Doe"
+	fmt.Println(&name)
+	callNamePointer(&name)
 }
 
 func updateSlice(s []string) {
 	s[0] = "Bye"
+}
+
+func callNamePointer(name *string) {
+	fmt.Println(&name)
 }
