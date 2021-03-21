@@ -12,6 +12,10 @@ func (p Person) Print() {
 	fmt.Printf("%+v\n", p)
 }
 
+func (p *Person) UpdateFirstName(firstName string) {
+	p.FirstName = firstName
+}
+
 type ContactInfo struct {
 	Email   string
 	ZipCode int
@@ -41,4 +45,15 @@ func main() {
 	}
 
 	p3.Print()
+
+	p3.UpdateFirstName("James")
+
+	p3.Print()
+
+	mySlice := []string{"Hi", "There", "How", "Are", "You"}
+	updateSlice(mySlice)
+}
+
+func updateSlice(s []string) {
+	s[0] = "Bye"
 }
