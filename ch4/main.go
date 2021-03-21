@@ -8,6 +8,10 @@ type Person struct {
 	ContactInfo
 }
 
+func (p Person) Print() {
+	fmt.Printf("%+v\n", p)
+}
+
 type ContactInfo struct {
 	Email   string
 	ZipCode int
@@ -16,16 +20,16 @@ type ContactInfo struct {
 func main() {
 	p := Person{FirstName: "John", LastName: "Doe"}
 
-	fmt.Printf("%+v\n", p)
+	p.Print()
 
 	p.FirstName = "Jane"
 
-	fmt.Printf("%+v\n", p)
+	p.Print()
 
 	var p2 Person
 	p2.ContactInfo.Email = "lala@lala.com"
 	p2.ContactInfo.ZipCode = 12345
-	fmt.Printf("%+v\n", p2)
+	p2.Print()
 
 	p3 := Person{
 		FirstName: "Jim",
@@ -36,5 +40,5 @@ func main() {
 		},
 	}
 
-	fmt.Printf("%+v\n", p3)
+	p3.Print()
 }
