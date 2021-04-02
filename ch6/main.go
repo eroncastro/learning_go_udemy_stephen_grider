@@ -3,6 +3,7 @@ package main
 import "fmt"
 
 // Interface type -> abstract
+// Interfaces are implicit in Go
 type GreetingBot interface {
 	Greet(string) string
 }
