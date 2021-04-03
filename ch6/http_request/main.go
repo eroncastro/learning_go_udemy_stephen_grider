@@ -7,10 +7,13 @@ import (
 
 func main() {
 	resp, err := http.Get("https://google.com/")
-
 	if err != nil {
 		panic(err)
 	}
 
-	fmt.Println(resp)
+	bs := make([]byte, 100000)
+
+	resp.Body.Read(bs)
+
+	fmt.Println(string(bs))
 }
