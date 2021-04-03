@@ -1,8 +1,9 @@
 package main
 
 import (
-	"fmt"
+	"io"
 	"net/http"
+	"os"
 )
 
 func main() {
@@ -11,9 +12,5 @@ func main() {
 		panic(err)
 	}
 
-	bs := make([]byte, 100000)
-
-	resp.Body.Read(bs)
-
-	fmt.Println(string(bs))
+	io.Copy(os.Stdout, resp.Body)
 }
